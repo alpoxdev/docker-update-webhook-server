@@ -12,8 +12,12 @@ if (!DOCKER_IMAGE_URL || !DOCKER_CONTAINER_NAME) {
   process.exit(1);
 }
 
+const dockerLoginScript = GITHUB_TOKEN
+  ? `echo ${GITHUB_TOKEN} | docker login ghcr.io -u USERNAME --password-stdin &&`
+  : '';
+
 const dockerUpdateScript = `
-  docker login ghcr.io -u USERNAME -p ${GITHUB_TOKEN} && \
+  ${dockerLoginScript} \
   if [ \$(docker ps -a -q -f name=${DOCKER_CONTAINER_NAME}) ]; then \
     docker stop ${DOCKER_CONTAINER_NAME} && docker rm ${DOCKER_CONTAINER_NAME}; \
   fi && \
