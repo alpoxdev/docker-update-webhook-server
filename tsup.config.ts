@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/server.ts'], // 엔트리 파일 설정
+  entry: ['src/index.ts'], // 엔트리 파일 설정
   splitting: false, // 코드 스플리팅 사용 여부
   sourcemap: true, // 소스맵 생성 여부
   clean: true, // 빌드 디렉토리 정리 여부
