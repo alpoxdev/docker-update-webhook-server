@@ -9,3 +9,9 @@ docker run \
 -e GITHUB_TOKEN='github_token' \
 ghcr.io/alpoxdev/docker-update-webhook-server:latest
 ```
+
+```shell
+curl -X POST http://localhost:5000/webhook \
+-H "Content-Type: application/json" \
+-d '{"ref":"refs/heads/main"}'
+```
