@@ -26,7 +26,8 @@ COPY --from=build /app/dist /app/dist
 COPY --from=base /app/node_modules /app/node_modules
 COPY ecosystem.config.js ./
 
-RUN npm install -g pm2
+RUN apk add --no-cache docker-cli && \
+  npm install -g pm2
 
 ARG DOCKER_IMAGE_URL
 ARG GITHUB_TOKEN
