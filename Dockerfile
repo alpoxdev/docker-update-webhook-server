@@ -14,9 +14,9 @@ RUN apk add --no-cache libc6-compat && \
 FROM node:18-alpine AS build
 
 WORKDIR /app
-COPY --from=base /app /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm run build
+RUN corepack enable pnpm && pnpm run build
 
 FROM node:18-alpine AS production
 
