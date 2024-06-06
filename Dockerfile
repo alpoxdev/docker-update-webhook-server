@@ -14,7 +14,7 @@ RUN apk add --no-cache libc6-compat && \
 FROM node:18-alpine AS build
 
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=base /app /app
 COPY . .
 RUN corepack enable pnpm && pnpm run build
 
@@ -29,7 +29,7 @@ RUN npm install -g pm2
 
 ARG DOCKER_IMAGE_URL
 ARG GITHUB_TOKEN
-ARG DOCKER_IMAGE_PORT=3000
+ARG DOCKER_IMAGE_PORT
 ARG DOCKER_CONTAINER_NAME
 
 ENV DOCKER_IMAGE_URL=${DOCKER_IMAGE_URL}
