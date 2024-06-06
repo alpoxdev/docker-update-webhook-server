@@ -27,7 +27,7 @@ const dockerUpdateScript = `
 const app = new Hono();
 
 app.post('/webhook', async (c) => {
-  exec(dockerUpdateScript, (err, stdout, stderr) => {
+  exec(dockerUpdateScript, { shell: '/bin/sh' }, (err, stdout, stderr) => {
     if (err) {
       console.error(`exec error: ${err}`);
       return c.json({ message: 'Error updating Docker image' }, 500);

@@ -1,8 +1,9 @@
 ```shell
 docker run \
 -d \
---name=ci-cd-server \
+--name=webhook-server \
 -p 5000:5000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
 -e DOCKER_IMAGE_URL='target_image_url' \
 -e DOCKER_IMAGE_PORT='3000' \
 -e DOCKER_CONTAINER_NAME='target_container' \
@@ -11,7 +12,5 @@ ghcr.io/alpoxdev/docker-update-webhook-server:latest
 ```
 
 ```shell
-curl -X POST http://localhost:5000/webhook \
--H "Content-Type: application/json" \
--d '{"ref":"refs/heads/main"}'
+curl -X POST http://localhost:5000/webhook
 ```
