@@ -1,9 +1,6 @@
 import { serve } from '@hono/node-server';
-import { config } from 'dotenv';
 import { Hono } from 'hono';
 import { exec } from 'node:child_process';
-
-config();
 
 const app = new Hono();
 

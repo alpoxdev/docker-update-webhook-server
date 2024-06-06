@@ -20,7 +20,6 @@ WORKDIR /app
 COPY --from=build /app/dist /app/dist
 COPY --from=base /app/node_modules /app/node_modules
 COPY ecosystem.config.js ./
-COPY .env ./
 
 RUN npm install -g pm2
 
