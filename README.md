@@ -1,7 +1,6 @@
 ```shell
 docker run \
 -d \
---rm \
 --name=ci-cd-server \
 -p 5000:5000 \
 -e DOCKER_IMAGE_URL='target_image_url' \

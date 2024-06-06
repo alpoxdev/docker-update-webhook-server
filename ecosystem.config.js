@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'webhook-server',
-      script: './dist/server.js',
+      script: './dist/index.js',
       watch: '.',
     },
   ],
