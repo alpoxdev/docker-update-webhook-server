@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "tsup src/index.ts --out-dir dist --format cjs",
+    "build": "tsup",
     "dev": "tsx watch src/index.ts"
   },
   "dependencies": {

@@ -48,3 +48,9 @@ serve({
 });
 
 console.log(`Server is running on port ${port}`);
+console.log({
+  DOCKER_IMAGE_URL,
+  DOCKER_IMAGE_PORT,
+  DOCKER_CONTAINER_NAME,
+  GITHUB_TOKEN,
+});
