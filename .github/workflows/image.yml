@@ -1,0 +1,28 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - deploy/image
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        env:
+          CR_PAT: ${{ secrets.GHCR_PAT }}
+        run: echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t ghcr.io/alpoxdev/docker-update-webhook-server:latest .
+
+      - name: Push Docker image to GitHub Container Registry
+        run: docker push ghcr.io/alpoxdev/docker-update-webhook-server:latest
+
+      - name: Logout from GitHub Container Registry
+        run: docker logout ghcr.io
