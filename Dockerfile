@@ -2,10 +2,14 @@
 FROM node:18-alpine AS base
 
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies based on the preferred package manager
+COPY package.json pnpm-lock.yaml* ./
 RUN apk add --no-cache libc6-compat && \
-    npm install -g pnpm && \
-    pnpm install
+  corepack enable pnpm && \
+  if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
 
 FROM node:18-alpine AS build
 
@@ -25,7 +29,7 @@ RUN npm install -g pm2
 
 ARG DOCKER_IMAGE_URL
 ARG GITHUB_TOKEN
-ARG DOCKER_IMAGE_PORT
+ARG DOCKER_IMAGE_PORT=3000
 ARG DOCKER_CONTAINER_NAME
 
 ENV DOCKER_IMAGE_URL=${DOCKER_IMAGE_URL}
