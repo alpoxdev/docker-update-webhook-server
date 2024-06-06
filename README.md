@@ -14,3 +14,8 @@ ghcr.io/alpoxdev/docker-update-webhook-server:latest
 ```shell
 curl -X POST http://localhost:5000/webhook
 ```
+
+```shell
+docker stop webhook-server
+docker rmi ghcr.io/alpoxdev/docker-update-webhook-server
+```
