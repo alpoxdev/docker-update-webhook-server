@@ -13,7 +13,7 @@ if (!DOCKER_IMAGE_URL || !DOCKER_CONTAINER_NAME) {
 }
 
 const dockerLoginScript = GITHUB_TOKEN
-  ? `echo ${GITHUB_TOKEN} | docker login ghcr.io -u USERNAME --password-stdin &&`
+  ? `echo '${GITHUB_TOKEN}' | docker login ghcr.io -u alpoxdev --password-stdin &&`
   : '';
 
 const dockerUpdateScript = `
